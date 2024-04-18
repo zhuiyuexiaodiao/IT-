@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 // 商品类
@@ -61,6 +60,28 @@ class CommodityManager {
         System.out.println(name + " 上架成功！");
     }
 
+    // 修改商品数量
+    public void modifyQuantity(String name, int newQuantity) {
+        for (Commodity commodity : commodities) {
+            if (commodity.getName().equals(name)) {
+                commodity.setQuantity(newQuantity);
+                System.out.println(name + " 数量修改成功！");
+                return;
+            }
+        }
+        System.out.println("找不到名称为 " + name + " 的商品！");
+    }
+
+    // 根据名称检索商品
+    public Commodity findCommodityByName(String name) {
+        for (Commodity commodity : commodities) {
+            if (commodity.getName().equals(name)) {
+                return commodity;
+            }
+        }
+        return null;
+    }
+
     // 显示所有商品信息
     public void displayAllCommodities() {
         System.out.println("所有商品信息：");
@@ -81,5 +102,20 @@ public class Main {
 
         // 显示所有商品信息
         manager.displayAllCommodities();
+
+        // 修改商品数量
+        manager.modifyQuantity("手机", 80);
+        manager.modifyQuantity("电视", 40);
+
+        // 显示修改后的商品信息
+        manager.displayAllCommodities();
+
+        // 根据名称检索商品
+        Commodity foundCommodity = manager.findCommodityByName("手机");
+        if (foundCommodity != null) {
+            System.out.println("找到商品：" + foundCommodity.getName());
+        } else {
+            System.out.println("未找到商品！");
+        }
     }
 }
