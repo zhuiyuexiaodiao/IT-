@@ -1,5 +1,4 @@
 import java.util.*;
-
 // 商品类
 class Commodity {
     private String name;
